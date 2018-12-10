@@ -1,10 +1,16 @@
 package com.student.Controllers;
 
+import java.util.ArrayList;
+
+import com.student.DAOs.*;
+
 public class Student {
 	private int studentId;
 	private int courseId;
 	private String name;
 	private String address;
+	
+	public ArrayList fromStudentDB;
 	
 	public int getStudentId(){
 		return studentId;
@@ -31,4 +37,40 @@ public class Student {
 	{
 		this.name = sName;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+		
+	}
+	public void init() {
+		fromStudentDB = DAO.getStudentListFromDB();
+	}
+	
+	public ArrayList studentList() {
+		return fromStudentDB;
+	}
+	
+	public String saveStudentDetails(Student newStudentObj) {
+		return DAO.saveStudentDetailsInDB(newStudentObj);
+	}
+	
+	public String editStudentRecord(int studentId) {
+		return DAO.editStudentRecordInDB(studentId);
+	}
+	
+	public String updateStudentDetails(Student updateStudentObj) {
+		return DAO.updateStudentDetailsInDB(updateStudentObj);
+	}
+	
+	public String deleteStudentRecord(int studentId) {
+		return DAO.deleteStudentRecordInDB(studentId);
+	}
+	
+	
+	
+	
 }

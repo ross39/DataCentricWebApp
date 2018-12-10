@@ -7,5 +7,30 @@
 <title>The following are the Students </title>
 </h:head>
 
+<h:body>
+<h:commandButton action="#{Student.addStudent(student.id)}" value="Update" class="btn btn-primary"/>
+	<f:facet name="header">Id</f:facet>
+           <h:outputText value="#{table.rowIndex + 1}" />
+     </h:column>
+ 
+     <h:column>
+        <f:facet name="header">Student Id</f:facet>
+           <h:outputText value="#{Student.id}" />
+       </h:column>
+       <h:column>
+       
+       <h:column>
+        <f:facet name="header">Course ID</f:facet>
+           <h:outputText value="#{course.id}" />
+       </h:column>
+       <h:column>
+       
+       <h:column>
+        <f:facet name="header">Name</f:facet>
+           <h:outputText value="#{Student.name}" />
+       </h:column>
+       <h:column>
+
+</h:body>
 
 </html>

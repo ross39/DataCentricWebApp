@@ -56,9 +56,11 @@ public class Course {
 		return DAO.updateCoursetDetailsInDB(updateCourseObJ);
 	}
 	
-	public String deleteCourseRecord(int courseId){
-		return DAO.deleteCourseRecordInDB(courseId);
-	}
+//	public String deleteCourseRecord(int courseId){
+	//	return DAO.deleteCourseRecordInDB(courseId);
+	//}
+	
+	
 	
 	
 	
