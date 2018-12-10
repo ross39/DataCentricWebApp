@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<title>The following are the courses </title>
+</h:head>
+
+<h:body>
+<h:commandButton action="#{course.editCourseDetails(course.id)}" value="Update" class="btn btn-primary" />	<h:column>
+       <f:facet name="header">Id</f:facet>
+           <h:outputText value="#{table.rowIndex + 1}" />
+     </h:column>
+      <h:column>
+        <f:facet name="header">Course ID</f:facet>
+           <h:outputText value="#{course.id}" />
+       </h:column>
+       <h:column>
+        <f:facet name="header">Course Name</f:facet>
+           <h:outputText value="#{course.name}" />
+       </h:column>
+       <h:column>
+        <f:facet name="header">Course Duration</f:facet>
+           <h:outputText value="#{course.duration}" />
+       </h:column>
+       <h:column>
+        <f:facet name="header">Course Name</f:facet>
+           <h:outputText value="#{course.name}" />
+       </h:column>
+       
+       <h:column>
+           <f:facet name="header">Update</f:facet>
+            <h:commandButton action="#{course.editCourseDetails(course.id)}" value="Update" class="btn btn-primary" />
+        </h:column>
+
+
+</h:body>
+
+</html>
+	
