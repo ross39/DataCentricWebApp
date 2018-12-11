@@ -6,7 +6,7 @@ import com.student.DAOs.*;
 
 public class Student {
 	private int studentId;
-	private int courseId;
+	private String courseId;
 	private String name;
 	private String address;
 	
@@ -20,11 +20,11 @@ public class Student {
 		this.studentId = id;
 	}
 	
-	public int getCourseId(){
+	public String getCourseId(){
 		return courseId;
 	}
 	
-	public void setCourseId(int cid)
+	public void setCourseId(String cid)
 	{
 		this.courseId = cid;
 	}

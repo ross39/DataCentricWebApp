@@ -3,6 +3,9 @@ package com.student.DAOs;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
 
 import com.student.Controllers.Student;
 import com.student.DAOs.*;
@@ -39,24 +42,51 @@ public class DAO {
 			stmtObj = (Statement) getConnection().createStatement();
 			resultSetObj = stmtObj.executeQuery("select * from student");
 			while(resultSetObj.next()){
-				DAO daoObj = new DAO();
-				daoObj.setStudentId(resultSetObj.getInt("sid"));
-				daoObj.setCourseId(resultSetObj.getString("cID"));
-				daoObj.setName(resultSetObj.getInt("name"));
-				daoObj.setAddress(resultSetObj.getString("address"));
-				StudentList.add(daoObj); 
+				Student student = new Student();
+				student.setStudentId(resultSetObj.getInt("sid"));
+				student.setCourseId(resultSetObj.getString("cID"));
+				student.setName(resultSetObj.getString("name"));
+				student.setAddress(resultSetObj.getString("address"));
+				StudentList.add(student); 
 			}
+			
+			System.out.println("Total Records Fetched: " +StudentList.size());
+			connObj.close();
+		} catch(Exception sqlException) {
+			sqlException.printStackTrace();
 		}
+		return StudentList;
 		
 	}
 	
 	public static String saveStudentDetailsInDB(Student newStudentObj) {
-		return null;
-		
-		
+		int saveResult = 0;
+		String navigationResult ="";
+		try {
+			pstmt = (PreparedStatement) getConnection().prepareStatement("insert into student(sid,cId,name,address) values(?,?,?,?)");
+			pstmt.setInt(1,  newStudentObj.getStudentId());
+			pstmt.setString(2, newStudentObj.getCourseId());
+			pstmt.setString(3, newStudentObj.getName());
+			pstmt.setString(4, newStudentObj.getAddress());
+		} catch(Exception sqlException) {
+			sqlException.printStackTrace();
+		}
+		if(saveResult != 0) {
+			navigationResult ="list_students.xhtml?faces-redirect=true";
+		} else {
+			navigationResult = "createStudent.xhtml?faces-redirect=true";
+		}
+		return navigationResult;
 	}
 	
 	 public static String editStudentRecordInDB(int studentId) {
+		 Student editRecord = null;
+		 System.out.println("editStudentRecordInDB() : Student Id: " + studentId);
+		 Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		 
+		 try {
+			 
+		 }
 		 return null;
 	 }
 	 
