@@ -85,18 +85,50 @@ public class DAO {
 		 Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		 
 		 try {
-			 
+			 stmtObj = (Statement) getConnection().createStatement();
+			 resultSetObj = stmtObj.executeQuery("select * from student where sid = " + studentId);
+			 if(resultSetObj != null) {
+				 resultSetObj.next();
+				 editRecord = new Student();
+				 editRecord.setStudentId(resultSetObj.getInt("sid"));
+				 editRecord.setCourseId(resultSetObj.getString("cId"));
+				 editRecord.setName(resultSetObj.getString("name"));
+				 editRecord.setAddress(resultSetObj.getString("address"));
+			 }
+			 sessionMapObj.put("editRecordOb", editRecord);
+			 connObj.close();
+		 } catch(Exception sqlException) {
+			 sqlException.printStackTrace();
 		 }
-		 return null;
+		 return "/editStudent.xhtml?faces-redirect=true";
 	 }
 	 
 	  public static String updateStudentDetailsInDB(Student updateStudentObj) {
-		  return null;
+		  try {
+			  pstmt = (PreparedStatement) getConnection().prepareStatement("update student set sid=?, cId=?, name=?, address=?");
+			  pstmt.setInt(1, updateStudentObj.getStudentId());
+			  pstmt.setString(2, updateStudentObj.getCourseId());
+			  pstmt.setString(3, updateStudentObj.getName());
+			  pstmt.setString(4, updateStudentObj.getAddress());
+			  pstmt.executeUpdate();
+			  connObj.close();
+		  } catch(Exception sqlException) {
+			  sqlException.printStackTrace();
+		  }
+		  return "/list_students.xhtml?faces-redirect=true";
 	  }
 
 	  
 	  public static String deleteStudentRecordInDB(int studentId){
-		  return null;
+		  System.out.println("deleteStudentRecordInDB() : Student Id: " + studentId);
+		  try {
+			  pstmt = (PreparedStatement) getConnection().prepareStatement("delete from student where sid = " + studentId);
+			  pstmt.executeUpdate();
+			  connObj.close();
+		  } catch(Exception sqlException) {
+			  sqlException.printStackTrace();
+		  }
+		  return "/list_students.xhtml?faces-redirect=true";
 	  }
 
 
