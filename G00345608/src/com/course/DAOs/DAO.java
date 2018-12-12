@@ -7,12 +7,16 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 import com.courses.Controllers.Course;
 import com.mysql.jdbc.*;
 
 public class DAO {
-
+	
+	private DataSource mysqlDS;
 	public static Statement stmtObj;
 	public static Connection connObj;
 	public static ResultSet resultSetObj;
@@ -21,7 +25,7 @@ public class DAO {
 	public static Connection getConnection(){  
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");     
-			String db_url ="jdbc:mysql://localhost:3306/students",
+			String db_url ="jdbc:mysql://localhost:3306/studentdb",
 					db_userName = "root",
 					db_password = "";
 			connObj = (Connection) DriverManager.getConnection(db_url,db_userName,db_password);  
@@ -31,6 +35,13 @@ public class DAO {
 		return connObj;
 	}
 	
+	/*public DAO() throws Exception{
+		InitialContext context = new InitialContext();
+		String jndiName = "java:comp/env/jdbc/studentdb";
+		mysqlDS = (DataSource) context.lookup(jndiName);
+		connObj = (Connection)mysqlDS.getConnection();
+		
+	}*/
 	
 	public static ArrayList getCourseListFromDB(){
 		ArrayList courseList = new ArrayList();

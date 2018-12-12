@@ -21,30 +21,30 @@
 </h:head>
 
 <h:body>
-<h:commandButton action="#{course.editCourseDetails(course.id)}" value="Update" class="btn btn-primary" />	<h:column>
+<h:commandButton action="#{Course.editCourseDetails(Course.id)}" value="Update" class="btn btn-primary" />
        <f:facet name="header">Id</f:facet>
            <h:outputText value="#{table.rowIndex + 1}" />
      </h:column>
       <h:column>
         <f:facet name="header">Course ID</f:facet>
-           <h:outputText value="#{course.id}" />
+           <h:outputText value="#{Course.id}" />
        </h:column>
        <h:column>
         <f:facet name="header">Course Name</f:facet>
-           <h:outputText value="#{course.name}" />
+           <h:outputText value="#{Course.name}" />
        </h:column>
        <h:column>
         <f:facet name="header">Course Duration</f:facet>
-           <h:outputText value="#{course.duration}" />
+           <h:outputText value="#{Course.duration}" />
        </h:column>
        <h:column>
         <f:facet name="header">Course Name</f:facet>
-           <h:outputText value="#{course.name}" />
+           <h:outputText value="#{Course.name}" />
        </h:column>
        
        <h:column>
            <f:facet name="header">Update</f:facet>
-            <h:commandButton action="#{course.editCourseDetails(course.id)}" value="Update" class="btn btn-primary" />
+            <h:commandButton action="#{Course.editCourseDetails(course.id)}" value="Update" class="btn btn-primary" />
         </h:column>
 
 

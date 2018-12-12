@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 import com.student.Controllers.Student;
 import com.student.DAOs.*;
@@ -20,13 +22,21 @@ public class DAO {
 	public static Connection connObj;
 	public static ResultSet resultSetObj;
 	public static PreparedStatement pstmt;
+	//private DataSource mysqlDB;
+	//Connection connection;s
+	//public DAO() throws Exception{
+		///String query;
+		////InitialContext context = new InitialContext();
+		//String javaName = "java:comp/env/student";
+		
+	//}
 
 	
 	//Make the connection
 	public static Connection getConnection(){  
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");     
-			String db_url ="jdbc:mysql://localhost:3306/students",
+			String db_url ="jdbc:mysql://localhost:3306/studentdb",
 					db_userName = "root",
 					db_password = "";
 			connObj = (Connection) DriverManager.getConnection(db_url,db_userName,db_password);  
@@ -35,6 +45,7 @@ public class DAO {
 		}  
 		return connObj;
 	}
+	
 	
 	public static ArrayList getStudentListFromDB(){
 		ArrayList StudentList = new ArrayList();
